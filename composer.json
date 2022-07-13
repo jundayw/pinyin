@@ -1,0 +1,33 @@
+{
+    "name": "jundayw/pinyin",
+    "description": "Chinese characters to Pinyin.",
+    "type": "library",
+    "keywords": ["laravel", "thinkphp", "php", "pinyin"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jundayw",
+            "email": "jundayw@126.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jundayw\\PinYin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jundayw\\PinYin\\PinYinServiceProvider"
+            ],
+            "aliases": {
+                "Render": "Jundayw\\PinYin\\Facades\\PinYin"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
