@@ -185,4 +185,4 @@ $pinyin->name('单某某', PinYin::PINYIN_TONE); // ["shàn","mǒu","mǒu"]
 
 ## 鸣谢
 
-项目源于 [overtrue/pinyin](https://github.com/overtrue/pinyin)，因词库完善补充不能满足业务时效性。
+项目源于 [overtrue/pinyin](https://github.com/overtrue/pinyin) ，因词库完善及补充不能满足业务时效性需求，此项目才应运而生。

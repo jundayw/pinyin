@@ -24,7 +24,7 @@
                 "Jundayw\\PinYin\\PinYinServiceProvider"
             ],
             "aliases": {
-                "Render": "Jundayw\\PinYin\\Facades\\PinYin"
+                "Render": "Jundayw\\PinYin\\Facades\\Alphabet"
             }
         }
     },

@@ -3,9 +3,9 @@
 namespace Jundayw\PinYin\Support;
 
 use Closure;
+use Generator;
 use Jundayw\PinYin\Contracts\DictLoaderInterface;
 use SplFileObject;
-use Generator;
 
 class GeneratorFileDictLoader implements DictLoaderInterface
 {

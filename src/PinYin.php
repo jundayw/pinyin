@@ -4,9 +4,12 @@ namespace Jundayw\PinYin;
 
 use Jundayw\PinYin\Contracts\DictLoaderInterface;
 use Jundayw\PinYin\Support\FileDictLoader;
+use Jundayw\PinYin\Traits\Macroable;
 
 class PinYin
 {
+    use Macroable;
+
     public const PINYIN_DEFAULT          = 1024;
     public const PINYIN_TONE             = 2;
     public const PINYIN_NO_TONE          = 4;
@@ -188,11 +191,11 @@ class PinYin
             $chinese = $this->convertSurname($chinese, $dictLoader);
         }
 
-        foreach ($this->config['chars'] ?? [] as $char => $pinyin) {
+        foreach ($this->config['words'] ?? [] as $char => $pinyin) {
             $chinese = strtr($chinese, [$char => $pinyin]);
         }
 
-        foreach ($this->config['words'] ?? [] as $char => $pinyin) {
+        foreach ($this->config['chars'] ?? [] as $char => $pinyin) {
             $chinese = strtr($chinese, [$char => $pinyin]);
         }
 
