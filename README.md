@@ -82,7 +82,7 @@ $pinyin->convert('带着希望去旅行，比到达终点更美好', PinYin::PIN
 // ["dài","zhe","xī","wàng","qù","lǚ","xíng","bǐ","dào","dá","zhōng","diǎn","gèng","měi","hǎo"]
 
 $pinyin->convert('带着希望去旅行，比到达终点更美好', PinYin::PINYIN_ASCII_TONE);
-//["dai4","zhe","xi1","wang4","qu4","lyu3","xing2","bi3","dao4","da2","zhong1","dian3","geng4","mei3","hao3"]
+// ["dai4","zhe","xi1","wang4","qu4","lyu3","xing2","bi3","dao4","da2","zhong1","dian3","geng4","mei3","hao3"]
 ```
 
 ### 翻译姓名
