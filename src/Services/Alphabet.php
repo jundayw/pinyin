@@ -1,8 +1,8 @@
 <?php
 
-namespace Jundayw\PinYin\Facades;
+namespace Jundayw\PinYin\Services;
 
-use Illuminate\Support\Facades\Facade;
+use think\Facade;
 use Jundayw\PinYin\PinYin;
 use Jundayw\PinYin\Traits\Macroable;
 
@@ -24,8 +24,8 @@ use Jundayw\PinYin\Traits\Macroable;
  */
 class Alphabet extends Facade
 {
-    public static function getFacadeAccessor()
+    protected static function getFacadeClass()
     {
-        return 'pinyin';
+        return PinYin::class;
     }
 }

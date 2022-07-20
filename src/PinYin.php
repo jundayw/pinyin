@@ -86,7 +86,7 @@ class PinYin
     }
 
     /**
-     * Return a pinyin permalink from string.
+     * Return a pinyin kebab-case from string.
      *
      * @param string $chinese
      * @param string $delimiter
@@ -94,7 +94,7 @@ class PinYin
      *
      * @return string
      */
-    public function permalink(string $chinese, string $delimiter = null, int $option = PinYin::PINYIN_DEFAULT)
+    public function kebab(string $chinese, string $delimiter = null, int $option = PinYin::PINYIN_DEFAULT)
     {
         return implode($delimiter ?? '-', $this->convert($chinese, $option | PinYin::PINYIN_KEEP_NUMBER | PinYin::PINYIN_KEEP_ENGLISH));
     }

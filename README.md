@@ -1,11 +1,63 @@
-基于 [CC-CEDICT](http://cc-cedict.org/wiki/) 词典的中文转拼音工具，更准确的支持多音字的汉字转拼音解决方案。
-
 ## 安装
 
 使用 Composer 安装:
 
-```
+```shell
 composer require jundayw/pinyin
+```
+
+### 原生 `PHP` 中使用：
+
+```php
+use Jundayw\PinYin\PinYin;
+
+$config = include("../config/pinyin.php");
+
+$pinyin = new PinYin($config);
+
+$pinyin->name('单某某');
+```
+
+### 框架 `Laravel` 中使用：
+
+```php
+use Jundayw\PinYin\Facades\Alphabet;
+use Jundayw\PinYin\PinYin;
+
+// 门面使用方法
+Alphabet::name('单某某', PinYin::PINYIN_NAME);
+
+// 依赖注入
+public function test(PinYin $pinyin) {
+    return $pinyin->name('单某某');
+}
+```
+
+发布配置文件
+
+```shell
+php artisan vendor:publish --tag=pinyin-config
+```
+
+### 框架 `ThinkPHP` 中使用（ThinkPHP6）：
+
+```php
+use Jundayw\PinYin\Services\Alphabet;
+use Jundayw\PinYin\PinYin;
+
+// 门面使用方法
+Alphabet::name('单某某', PinYin::PINYIN_NAME);
+
+// 依赖注入
+public function test(PinYin $pinyin) {
+    return $pinyin->name('单某某');
+}
+```
+
+发布配置文件
+
+```shell
+php think vendor:publish
 ```
 
 ## 可用选项：
@@ -20,25 +72,9 @@ composer require jundayw/pinyin
 | `PINYIN_KEEP_PUNCTUATION`   |  保留标点  | 
 | `PINYIN_UMLAUT_V` | 使用 `v` 代替 `yu`, 例如：吕 `lyu` 将会转为 `lv` |
 
-## 使用
-
-可选转换方案：
-
-- 内存型，适用于服务器内存空间较富余，优点：转换快
-- 小内存型(默认)，适用于内存比较紧张的环境，优点：占用内存小，转换不如内存型快
-- I/O型，适用于虚拟机，内存限制比较严格环境。优点：非常微小内存消耗。缺点：转换慢，不如内存型转换快,php >= 5.5
-
 ### 拼音数组
 
 ```php
-use Jundayw\PinYin\PinYin;
-
-// Laravel 框架以由服务提供者注入配置信息
-// 手动载入配置仅为原生 PHP 项目需要
-$config = include("../config/pinyin.php");
-
-$pinyin = new PinYin($config);
-
 $pinyin->convert('带着希望去旅行，比到达终点更美好');
 // ["dai", "zhe", "xi", "wang", "qu", "lyu", "xing", "bi", "dao", "da", "zhong", "dian", "geng", "mei", "hao"]
 
@@ -49,19 +85,28 @@ $pinyin->convert('带着希望去旅行，比到达终点更美好', PinYin::PIN
 //["dai4","zhe","xi1","wang4","qu4","lyu3","xing2","bi3","dao4","da2","zhong1","dian3","geng4","mei3","hao3"]
 ```
 
-- 内存型: 将所有字典预先载入内存（Jundayw\PinYin\Support\MemoryFileDictLoader）
-- 小内存型: 将字典分片载入内存（Jundayw\PinYin\Support\FileDictLoader）
-- I/O型: 不载入内存，将字典使用文件流打开逐行遍历并运用php5.5生成器(yield)特性分配单行内存（Jundayw\PinYin\Support\GeneratorFileDictLoader）
+### 翻译姓名
+
+姓名的姓的读音有些与普通字不一样，比如 ‘单’ 常见的音为 `dan`，而作为姓的时候读 `shan`。
+
+```php
+name(string $chinese, int $option = PinYin::PINYIN_NAME)
+```
+
+```php
+$pinyin->name('单某某'); // ['shan', 'mou', 'mou']
+$pinyin->name('单某某', PinYin::PINYIN_TONE); // ["shàn","mǒu","mǒu"]
+```
 
 ### 生成用于链接的拼音字符串
 
 ```php
-permalink(string $chinese, string $delimiter = null, int $option = PinYin::PINYIN_DEFAULT  | PinYin::PINYIN_KEEP_NUMBER | PinYin::PINYIN_KEEP_ENGLISH)
+kebab(string $chinese, string $delimiter = null, int $option = PinYin::PINYIN_DEFAULT  | PinYin::PINYIN_KEEP_NUMBER | PinYin::PINYIN_KEEP_ENGLISH)
 ```
 
 ```php
-$pinyin->permalink('带着希望去旅行'); // dai-zhe-xi-wang-qu-lyu-xing
-$pinyin->permalink('带着希望去旅行', '.'); // dai.zhe.xi.wang.qu.lyu.xing
+$pinyin->kebab('带着希望去旅行'); // dai-zhe-xi-wang-qu-lyu-xing
+$pinyin->kebab('带着希望去旅行', '.'); // dai.zhe.xi.wang.qu.lyu.xing
 ```
 
 ### 获取首字符字符串
@@ -109,22 +154,9 @@ $pinyin->sentence('带着希望去旅行，比到达终点更美好！', null, P
 // dài zhe xī wàng qù lǚ xíng, bǐ dào dá zhōng diǎn gèng měi hǎo!
 ```
 
-### 翻译姓名
-
-姓名的姓的读音有些与普通字不一样，比如 ‘单’ 常见的音为 `dan`，而作为姓的时候读 `shan`。
-
-```php
-name(string $chinese, int $option = PinYin::PINYIN_NAME)
-```
-
-```php
-$pinyin->name('单某某'); // ['shan', 'mou', 'mou']
-$pinyin->name('单某某', PinYin::PINYIN_TONE); // ["shàn","mǒu","mǒu"]
-```
-
 ## 配置文件格式
 
->使用 `tab` 制表符作为分隔符
+> 使用 `tab` 制表符作为分隔符
 
 ```php
 [
@@ -183,6 +215,30 @@ $pinyin->name('单某某', PinYin::PINYIN_TONE); // ["shàn","mǒu","mǒu"]
 ];
 ```
 
+可选字典驱动类型：
+
+1、Jundayw\PinYin\Support\MemoryFileDictLoader
+
+- 内存型，适用于服务器内存空间较富余
+- 优点：转换快
+- 将所有字典预先载入内存
+
+2、Jundayw\PinYin\Support\FileDictLoader
+
+- 小内存型（默认），适用于内存比较紧张的环境
+- 优点：占用内存小，转换不如内存型快
+- 将字典分片载入内存
+
+3、Jundayw\PinYin\Support\GeneratorFileDictLoader
+
+- I/O型，适用于虚拟机，内存限制比较严格环境
+- 优点：非常微小内存消耗
+- 缺点：转换慢，不如内存型转换快
+- 不载入内存
+- 将字典使用文件流打开逐行遍历并运用 `php5.5` 生成器 `yield` 特性分配单行内存
+
 ## 鸣谢
 
-项目源于 [overtrue/pinyin](https://github.com/overtrue/pinyin) ，因词库完善及补充不能满足业务时效性需求，此项目才应运而生。
+> 基于 [CC-CEDICT](http://cc-cedict.org/wiki/) 词典的中文转拼音工具，更准确的支持多音字的汉字转拼音解决方案。
+
+> 项目源于 [overtrue/pinyin](https://github.com/overtrue/pinyin) ，因词库完善及补充不能满足业务时效性需求，此项目才应运而生。

@@ -26,6 +26,14 @@
             "aliases": {
                 "Render": "Jundayw\\PinYin\\Facades\\Alphabet"
             }
+        },
+        "think": {
+            "services": [
+                "Jundayw\\PinYin\\Services\\PinYinService"
+            ],
+            "config": {
+                "pinyin": "config/pinyin.php"
+            }
         }
     },
     "minimum-stability": "dev",
