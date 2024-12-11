@@ -1,3 +1,7 @@
+# PinYin
+
+Chinese Characters to Pinyin.
+
 ## 安装
 
 使用 Composer 安装:
@@ -5,6 +9,13 @@
 ```shell
 composer require jundayw/pinyin
 ```
+
+[![Latest Stable Version](https://poser.pugx.org/jundayw/pinyin/v)](https://packagist.org/packages/jundayw/pinyin)
+[![Total Downloads](https://poser.pugx.org/jundayw/pinyin/downloads)](https://packagist.org/packages/jundayw/pinyin)
+[![Latest Stable Version](https://poser.pugx.org/jundayw/pinyin/v)](https://packagist.org/packages/jundayw/pinyin)
+[![Latest Unstable Version](https://poser.pugx.org/jundayw/pinyin/v/unstable)](https://packagist.org/packages/jundayw/pinyin)
+[![License](https://poser.pugx.org/jundayw/pinyin/license)](https://packagist.org/packages/jundayw/pinyin)
+[![PHP Version Require](https://poser.pugx.org/jundayw/pinyin/require/php)](https://packagist.org/packages/jundayw/pinyin)
 
 ### 原生 `PHP` 中使用：
 
@@ -62,15 +73,15 @@ php think vendor:publish
 
 ## 可用选项：
 
-|      选项      | 描述                                                |
-| -------------  | ---------------------------------------------------|
-| `PINYIN_TONE`  | UNICODE 式音调：`měi hǎo`                    |
-| `PINYIN_ASCII_TONE`  | 带数字式音调：  `mei3 hao3`                    |
-| `PINYIN_NO_TONE`    |  无音调：`mei hao` | 
-| `PINYIN_KEEP_NUMBER`    | 保留数字  | 
-| `PINYIN_KEEP_ENGLISH`   | 保留英文   | 
-| `PINYIN_KEEP_PUNCTUATION`   |  保留标点  | 
-| `PINYIN_UMLAUT_V` | 使用 `v` 代替 `yu`, 例如：吕 `lyu` 将会转为 `lv` |
+| 选项                        | 描述                                   |
+|---------------------------|--------------------------------------|
+| `PINYIN_TONE`             | UNICODE 式音调：`měi hǎo`                |
+| `PINYIN_ASCII_TONE`       | 带数字式音调：  `mei3 hao3`                 |
+| `PINYIN_NO_TONE`          | 无音调：`mei hao`                        | 
+| `PINYIN_KEEP_NUMBER`      | 保留数字                                 | 
+| `PINYIN_KEEP_ENGLISH`     | 保留英文                                 | 
+| `PINYIN_KEEP_PUNCTUATION` | 保留标点                                 | 
+| `PINYIN_UMLAUT_V`         | 使用 `v` 代替 `yu`, 例如：吕 `lyu` 将会转为 `lv` |
 
 ### 拼音数组
 
