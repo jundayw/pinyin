@@ -12,7 +12,6 @@ composer require jundayw/pinyin
 
 [![Latest Stable Version](https://poser.pugx.org/jundayw/pinyin/v)](https://packagist.org/packages/jundayw/pinyin)
 [![Total Downloads](https://poser.pugx.org/jundayw/pinyin/downloads)](https://packagist.org/packages/jundayw/pinyin)
-[![Latest Stable Version](https://poser.pugx.org/jundayw/pinyin/v)](https://packagist.org/packages/jundayw/pinyin)
 [![Latest Unstable Version](https://poser.pugx.org/jundayw/pinyin/v/unstable)](https://packagist.org/packages/jundayw/pinyin)
 [![License](https://poser.pugx.org/jundayw/pinyin/license)](https://packagist.org/packages/jundayw/pinyin)
 [![PHP Version Require](https://poser.pugx.org/jundayw/pinyin/require/php)](https://packagist.org/packages/jundayw/pinyin)
